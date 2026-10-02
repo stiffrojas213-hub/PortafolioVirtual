@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Académico - Stiff Angel Rojas Ruiz</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Mammoth.js para lectura de Word (.docx) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <!-- Estilos Personalizados -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between">
+
+    <!-- HEADER / NAVBAR -->
+    <header class="border-b border-gray-800/80 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="showWindow('inicio')">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500 font-bold text-lg">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1 class="text-sm font-bold text-white tracking-wide">PORTAFOLIO ACADÉMICO</h1>
+                    <p class="text-[10px] text-gray-400">Ingeniería de Sistemas y Computación</p>
+                </div>
+            </div>
+
+            <!-- Navegación por Ventanas -->
+            <nav class="hidden md:flex items-center gap-2 text-xs font-semibold">
+                <button id="nav-inicio" onclick="showWindow('inicio')" class="nav-btn active">
+                    <i class="fa-solid fa-house"></i> Inicio
+                </button>
+                <button id="nav-academico" onclick="showWindow('academico')" class="nav-btn">
+                    <i class="fa-solid fa-folder-tree"></i> Académico
+                </button>
+                <button id="nav-sobre-mi" onclick="showWindow('sobre-mi')" class="nav-btn">
+                    <i class="fa-solid fa-user"></i> Sobre Mí
+                </button>
+                <button id="nav-contacto" onclick="showWindow('contacto')" class="nav-btn">
+                    <i class="fa-solid fa-envelope"></i> Contacto
+                </button>
+            </nav>
+
+            <!-- Acciones -->
+            <div class="flex items-center gap-3">
+                <button onclick="openProfileModal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-gray-700 text-xs font-semibold text-gray-200 flex items-center gap-2 transition-all">
+                    <i class="fa-solid fa-user-gear text-brand-500"></i>
+                    <span class="hidden sm:inline">Editar Perfil</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1">
+
+        <!-- VENTANA 1: INICIO -->
+        <section id="window-inicio" class="window-content space-y-6">
+            <div class="bg-slate-900/80 border border-gray-800/80 rounded-2xl p-6 shadow-xl backdrop-blur-sm">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                    <div class="relative group shrink-0">
+                        <img id="user-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Avatar de Perfil" class="w-28 h-28 rounded-2xl object-cover border-2 border-brand-500/40 shadow-lg">
+                        <button onclick="openProfileModal()" class="absolute inset-0 bg-black/60 rounded-2xl opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-xs font-bold transition-opacity">
+                            <i class="fa-solid fa-camera mr-1"></i> Cambiar Foto
+                        </button>
+                    </div>
+                    
+                    <div class="flex-1 text-center md:text-left space-y-3">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                            <h2 id="user-name" class="text-2xl font-bold text-white tracking-tight">STIFF ANGEL ROJAS RUIZ</h2>
+                            <span id="user-title" class="inline-block px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-500 text-xs font-semibold self-center md:self-auto">Estudiante de Ingeniería</span>
+                        </div>
+                        <p id="user-bio" class="text-xs text-gray-400 leading-relaxed max-w-3xl">
+                            Desarrollador en formación enfocado en arquitecturas limpias, algoritmos avanzados y gestión de software. Portafolio digital interactivo para el control de documentos universitarios y proyectos académicos.
+                        </p>
+                        
+                        <div class="flex flex-wrap justify-center md:justify-start gap-2 pt-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] text-gray-300 border border-gray-700"><i class="fa-solid fa-code text-brand-500 mr-1"></i> C++ / JavaScript</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] text-gray-300 border border-gray-700"><i class="fa-solid fa-database text-brand-500 mr-1"></i> SQL Databases</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-[11px] text-gray-300 border border-gray-700"><i class="fa-solid fa-layer-group text-brand-500 mr-1"></i> Fullstack Web</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accesos Rápidos -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div onclick="showWindow('academico')" class="bg-slate-900/60 border border-gray-800 p-5 rounded-2xl hover:border-brand-500/50 cursor-pointer transition-all group">
+                    <i class="fa-solid fa-folder-tree text-2xl text-brand-500 mb-2 group-hover:scale-110 transition-transform block"></i>
+                    <h3 class="font-bold text-white text-sm">Sección Académica</h3>
+                    <p class="text-xs text-gray-400 mt-1">Explora asignaturas, proyectos y gestión de carpetas personalizadas.</p>
+                </div>
+                <div onclick="showWindow('sobre-mi')" class="bg-slate-900/60 border border-gray-800 p-5 rounded-2xl hover:border-brand-500/50 cursor-pointer transition-all group">
+                    <i class="fa-solid fa-address-card text-2xl text-brand-500 mb-2 group-hover:scale-110 transition-transform block"></i>
+                    <h3 class="font-bold text-white text-sm">Sobre Mí</h3>
+                    <p class="text-xs text-gray-400 mt-1">Información sobre trayectoria, objetivos y enfoque técnico.</p>
+                </div>
+                <div onclick="showWindow('contacto')" class="bg-slate-900/60 border border-gray-800 p-5 rounded-2xl hover:border-brand-500/50 cursor-pointer transition-all group">
+                    <i class="fa-solid fa-envelope text-2xl text-brand-500 mb-2 group-hover:scale-110 transition-transform block"></i>
+                    <h3 class="font-bold text-white text-sm">Contacto Directo</h3>
+                    <p class="text-xs text-gray-400 mt-1">Envía un mensaje o conoce los canales de atención.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- VENTANA 2: ACADÉMICO / CARPETAS -->
+        <section id="window-academico" class="window-content hidden space-y-6">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-gray-800 pb-4 gap-4">
+                <div class="flex items-center gap-2">
+                    <button id="tab-btn-asignaturas" onclick="switchMainTab('asignaturas')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-500/10 border border-brand-500/30 text-brand-500 flex items-center gap-2">
+                        <i class="fa-solid fa-book-bookmark"></i> Asignaturas Académicas
+                    </button>
+                    <button id="tab-btn-proyectos" onclick="switchMainTab('proyectos')" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-900 border border-gray-800 text-gray-400 hover:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open"></i> Proyectos y Documentos
+                    </button>
+                </div>
+
+                <button onclick="promptCreateRootFolder()" class="px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-slate-950 font-bold text-xs transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-folder-plus"></i> Crear Nueva Carpeta
+                </button>
+            </div>
+
+            <!-- Asignaturas Grid Dinámico -->
+            <div id="section-asignaturas" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+            <!-- Proyectos Grid Dinámico -->
+            <div id="section-proyectos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 hidden"></div>
+        </section>
+
+        <!-- VENTANA 3: SOBRE MÍ -->
+        <section id="window-sobre-mi" class="window-content hidden space-y-6">
+            <div class="bg-slate-900/60 border border-gray-800/80 rounded-2xl p-6 space-y-6">
+                <div class="flex items-center gap-3 border-b border-gray-800 pb-3">
+                    <div class="w-9 h-9 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500">
+                        <i class="fa-solid fa-address-card"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white">Sobre Mí & Trayectoria Académica</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-gray-300">
+                    <div class="space-y-2 bg-slate-950/50 p-4 rounded-xl border border-gray-800/60">
+                        <h4 class="font-bold text-white flex items-center gap-2"><i class="fa-solid fa-code text-brand-500"></i> Enfoque Técnico</h4>
+                        <p class="text-gray-400 leading-relaxed">Especializado en resolución de problemas complejos, lógica de programación orientada a objetos, optimización de algoritmos y consumo de APIs REST.</p>
+                    </div>
+                    <div class="space-y-2 bg-slate-950/50 p-4 rounded-xl border border-gray-800/60">
+                        <h4 class="font-bold text-white flex items-center gap-2"><i class="fa-solid fa-graduation-cap text-brand-500"></i> Formación</h4>
+                        <p class="text-gray-400 leading-relaxed">Estudiante activo de la carrera de Ingeniería de Sistemas y Computación, participando activamente en talleres prácticos de desarrollo de software.</p>
+                    </div>
+                    <div class="space-y-2 bg-slate-950/50 p-4 rounded-xl border border-gray-800/60">
+                        <h4 class="font-bold text-white flex items-center gap-2"><i class="fa-solid fa-bullseye text-brand-500"></i> Objetivos</h4>
+                        <p class="text-gray-400 leading-relaxed">Creación de sistemas modernos y seguros, centrados en la usabilidad y rendimiento eficiente en entornos web y móviles.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VENTANA 4: CONTACTO -->
+        <section id="window-contacto" class="window-content hidden space-y-6">
+            <div class="bg-slate-900/60 border border-gray-800/80 rounded-2xl p-6 space-y-6">
+                <div class="flex items-center gap-3 border-b border-gray-800 pb-3">
+                    <div class="w-9 h-9 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white">Contacto Directo</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-3">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Tu Nombre</label>
+                            <input type="text" required placeholder="Ej: Juan Pérez" class="w-full bg-slate-950 border border-gray-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Correo Electrónico</label>
+                            <input type="email" required placeholder="correo@ejemplo.com" class="w-full bg-slate-950 border border-gray-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Mensaje</label>
+                            <textarea rows="3" required placeholder="Escribe tu consulta aquí..." class="w-full bg-slate-950 border border-gray-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-2.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-slate-950 font-bold text-xs transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
+                        </button>
+                    </form>
+
+                    <div class="space-y-4 flex flex-col justify-between bg-slate-950/40 p-5 rounded-xl border border-gray-800/60 text-xs">
+                        <div>
+                            <h4 class="font-bold text-white mb-2">Información Directa</h4>
+                            <div class="space-y-2 text-gray-400">
+                                <p class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-500"></i> stiff.rojas@estudiante.edu.pe</p>
+                                <p class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-500"></i> Perú</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-white mb-2">Redes Profesionales</h4>
+                            <div class="flex gap-3">
+                                <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 text-gray-300 flex items-center justify-center transition-colors"><i class="fa-brands fa-github text-sm"></i></a>
+                                <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 text-gray-300 flex items-center justify-center transition-colors"><i class="fa-brands fa-linkedin text-sm"></i></a>
+                                <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 text-gray-300 flex items-center justify-center transition-colors"><i class="fa-brands fa-whatsapp text-sm"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOLDER CONTENT MODAL -->
+    <div id="folder-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-gray-800 rounded-2xl w-full max-w-4xl p-6 space-y-4 shadow-2xl flex flex-col max-h-[90vh]">
+            <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                <div class="overflow-hidden">H
+                    <h3 id="folder-modal-title" class="text-lg font-bold text-white flex items-center gap-2 truncate">
+                        <i class="fa-solid fa-folder-open text-brand-500"></i> Nombre Carpeta
+                    </h3>
+                    <p id="folder-breadcrumb" class="text-xs text-gray-400 mt-0.5 truncate"></p>
+                </div>
+                <button onclick="closeFolderModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-gray-400 hover:text-white flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Botones de Acción dentro de la Carpeta -->
+            <div class="flex flex-wrap items-center justify-between gap-2 bg-slate-800/40 border border-gray-800 p-3 rounded-xl">
+                <div class="flex items-center gap-2">
+                    <button id="btn-go-back" onclick="navigateUpFolder()" class="hidden px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-gray-300 font-semibold transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-arrow-left"></i> Atrás
+                    </button>
+                    <span class="text-xs text-gray-300 font-medium">Contenido</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button onclick="promptCreateSubFolder()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-gray-700 text-white font-bold text-xs transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-folder-plus text-brand-500"></i> Nueva Carpeta
+                    </button>
+                    <button onclick="promptAddUrlFile()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-gray-700 text-cyan-400 font-bold text-xs transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-link"></i> Subir URL
+                    </button>
+                    <!-- Input oculto y accionado mediante triggerFileUpload() -->
+                    <input type="file" id="file-upload-input" class="hidden" onchange="handleFileUpload(event)" multiple>
+                    <button onclick="triggerFileUpload()" class="px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-slate-950 font-bold text-xs transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Subir Archivo
+                    </button>
+                </div>
+            </div>
+
+            <div id="folder-file-list" class="space-y-2 overflow-y-auto flex-1 pr-1">
+                <!-- Lista Dinámica de Carpetas y Archivos -->
+            </div>
+        </div>
+    </div>
+
+    <!-- PREVIEW MODAL -->
+    <div id="preview-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex flex-col">
+        <div class="h-14 border-b border-gray-800 px-4 flex items-center justify-between bg-slate-900/80">
+            <div class="flex items-center gap-3 overflow-hidden">
+                <div id="modal-file-icon" class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center shrink-0"></div>
+                <div class="truncate">
+                    <h3 id="modal-file-name" class="text-xs font-bold text-white truncate">--</h3>
+                    <p id="modal-file-meta" class="text-[10px] text-gray-400">--</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <div id="image-controls" class="hidden flex items-center gap-1 bg-slate-800 border border-gray-700 rounded-lg p-1 mr-2">
+                    <button onclick="zoomImage(-0.2)" class="w-6 h-6 rounded text-gray-300 hover:bg-slate-700 text-xs"><i class="fa-solid fa-minus"></i></button>
+                    <button onclick="resetImageTransform()" class="px-2 text-[10px] font-semibold text-gray-300 hover:bg-slate-700 rounded">100%</button>
+                    <button onclick="zoomImage(0.2)" class="w-6 h-6 rounded text-gray-300 hover:bg-slate-700 text-xs"><i class="fa-solid fa-plus"></i></button>
+                </div>
+
+                <a id="modal-download-btn" href="#" download class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-gray-200 flex items-center gap-1.5">
+                    <i class="fa-solid fa-download"></i> <span class="hidden sm:inline">Descargar</span>
+                </a>
+                <button onclick="closePreviewModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-gray-300 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1 relative overflow-hidden bg-slate-950 flex items-center justify-center p-4">
+            <div id="preview-loading" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm z-20 flex flex-col items-center justify-center hidden">
+                <i class="fa-solid fa-circle-notch fa-spin text-brand-500 text-3xl mb-2"></i>
+                <span class="text-xs text-gray-400">Procesando documento...</span>
+            </div>
+
+            <div id="view-image-wrapper" class="hidden max-w-full max-h-full overflow-auto flex items-center justify-center">
+                <img id="view-image" src="" alt="Vista Previa" class="max-w-full max-h-[80vh] object-contain transition-transform duration-150 ease-out rounded-lg shadow-2xl">
+            </div>
+
+            <div id="view-word-wrapper" class="hidden w-full max-w-3xl max-h-[82vh] overflow-y-auto bg-slate-900 border border-gray-800 p-8 rounded-xl text-gray-200 text-xs leading-relaxed shadow-2xl prose prose-invert"></div>
+
+            <iframe id="view-pdf-frame" class="hidden w-full h-full rounded-xl border border-gray-800" src=""></iframe>
+
+            <div id="view-code-wrapper" class="hidden w-full max-w-4xl max-h-[82vh] overflow-y-auto bg-slate-900 border border-gray-800 rounded-xl p-4 font-mono text-xs text-emerald-400 shadow-2xl">
+                <pre id="view-code-content" class="whitespace-pre-wrap break-words"></pre>
+            </div>
+
+            <div id="view-fallback" class="hidden text-center p-8 bg-slate-900 border border-gray-800 rounded-2xl max-w-md">
+                <i class="fa-solid fa-file-circle-question text-4xl text-amber-500 mb-3"></i>
+                <h4 class="text-sm font-bold text-white mb-1">Vista Previa No Disponible</h4>
+                <p class="text-xs text-gray-400 mb-4">Descarga el archivo para abrirlo con tu aplicación predeterminada.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE EDIT MODAL -->
+    <div id="profile-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-gray-800 rounded-2xl w-full max-w-md p-6 space-y-4 shadow-2xl">
+            <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-user-pen text-brand-500"></i> Editar Perfil y Foto
+                </h3>
+                <button onclick="closeProfileModal()" class="text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Nombre Completo</label>
+                    <input type="text" id="input-profile-name" class="w-full bg-slate-800 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Título / Cargo</label>
+                    <input type="text" id="input-profile-title" class="w-full bg-slate-800 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">URL Foto de Perfil (Enlace Web)</label>
+                    <input type="url" id="input-profile-avatar" placeholder="https://ejemplo.com/foto.jpg" class="w-full bg-slate-800 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Biografía / Resumen</label>
+                    <textarea id="input-profile-bio" rows="3" class="w-full bg-slate-800 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500"></textarea>
+                </div>
+            </div>
+
+            <div class="flex justify-end gap-2 pt-2">
+                <button onclick="closeProfileModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-gray-300 text-xs font-semibold hover:bg-slate-700">Cancelar</button>
+                <button onclick="saveProfileChanges()" class="px-4 py-2 rounded-lg bg-brand-600 text-slate-950 font-bold text-xs hover:bg-brand-500">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-800/80 bg-slate-950/60 py-6 px-4 text-center text-xs text-gray-400 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <p class="font-medium text-gray-300">&copy; 2026 STIFF ANGEL ROJAS RUIZ. Todos los derechos reservados.</p>
+                <p class="text-[10px] text-gray-500 mt-0.5">Portafolio Web Modular por Ventanas SPA</p>
+            </div>
+            <div class="flex items-center gap-4 text-gray-400">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Entorno Seguro</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-code text-emerald-400"></i> SPA Dynamic Nav</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+<!-- SDK de Google Identity y API Client para conexión con Google Drive -->
+    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>

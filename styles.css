@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+/* Base & Tipografía General */
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #030712;
+    color: #f3f4f6;
+    letter-spacing: -0.01em;
+}
+
+/* Transiciones globales suaves */
+* {
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Botones de Navegación por Ventanas */
+.nav-btn {
+    padding: 0.55rem 0.95rem;
+    border-radius: 0.75rem;
+    color: #9ca3af;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid transparent;
+}
+
+.nav-btn:hover {
+    color: #ffffff;
+    background: rgba(31, 41, 55, 0.6);
+    border-color: rgba(75, 85, 99, 0.4);
+    transform: translateY(-1px);
+}
+
+.nav-btn.active {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    box-shadow: 0 0 15px -3px rgba(16, 185, 129, 0.2);
+}
+
+/* Efectos de Vidrio Esmerilado (Glassmorphism) */
+header, 
+#folder-modal > div,
+#profile-modal > div,
+.window-content > div {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+/* Tarjetas Interactivas con Efecto Glow */
+.group {
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+}
+
+.group:hover {
+    box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.15),
+                0 0 1px 1px rgba(16, 185, 129, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Scrollbars Personalizados Eleganes */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #030712;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1f2937;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #059669;
+    box-shadow: 0 0 10px rgba(5, 150, 105, 0.5);
+}
+
+/* Estilos de Contenido para el Visor de Word */
+#view-word-wrapper {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.7;
+}
+
+#view-word-wrapper h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #38bdf8;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+#view-word-wrapper h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #34d399;
+    margin-top: 1.25rem;
+    margin-bottom: 0.6rem;
+}
+
+#view-word-wrapper h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f3f4f6;
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+#view-word-wrapper ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+}
+
+#view-word-wrapper p {
+    margin-bottom: 0.75rem;
+    color: #d1d5db;
+}
+
+/* Visor de Código Fuente */
+#view-code-wrapper {
+    font-family: 'Fira Code', monospace;
+    background: #080d1a !important;
+}
+
+/* Animación de entrada para ventanas */
+.window-content:not(.hidden) {
+    animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px) scale(0.99);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
